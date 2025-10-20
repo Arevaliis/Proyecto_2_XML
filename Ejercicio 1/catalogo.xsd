@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="catalogo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="libros" />
+                <xs:element ref="revistas" />
+                <xs:element ref="usuarios" />
+                <xs:element ref="prestamos" />
+            </xs:sequence>
+            <xs:attribute name="fecha" type="xs:date" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- LIBROS -->
+    <xs:element name="libros">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="libro" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- LIBRO -->
+    <xs:element name="libro">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="titulo" type="tituloLongitud" />
+                <xs:element name="anio" type="anioMaximo" />
+                <xs:element ref="autores" />
+                <xs:element ref="etiquetas" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" use="required" />
+            <xs:attribute name="categoria" use="required" type="categoriaLibro" />
+            <xs:attribute name="isbn" use="required" type="patronIsbn" />
+            <xs:attribute name="paginas" use="optional" type="minNumeroPaginas" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- RESTRICCION TITULO -->
+    <xs:simpleType name="tituloLongitud">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION ANIO -->
+    <xs:simpleType name="anioMaximo">
+        <xs:restriction base="xs:integer">
+            <xs:maxInclusive value="2025" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION CATEGORIAS LIBRO -->
+    <xs:simpleType name="categoriaLibro">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="novela" />
+            <xs:enumeration value="drama" />
+            <xs:enumeration value="aventura" />
+            <xs:enumeration value="historia" />
+            <xs:enumeration value="romance" />
+            <xs:enumeration value="terror" />
+            <xs:enumeration value="tecnico" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION PATRON ISBN -->
+    <xs:simpleType name="patronIsbn">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{13}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION NUMERO PAGINAS -->
+    <xs:simpleType name="minNumeroPaginas">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="20" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- AUTORES -->
+    <xs:element name="autores">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="autor" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- AUTOR -->
+    <xs:element name="autor">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="autorNombreLongitud" />
+                <xs:element name="orcid" type="orcidPatron" minOccurs="0" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- RESTRICCION NOMBRE AUTOR -->
+    <xs:simpleType name="autorNombreLongitud">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="3" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION ORCID -->
+    <xs:simpleType name="orcidPatron">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ETIQUETAS -->
+    <xs:element name="etiquetas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="etiqueta" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- REVISTAS -->
+    <xs:element name="revistas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="revista" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- REVISTA -->
+    <xs:element name="revista">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="titulo" type="tituloLongitud" />
+                <xs:element name="anio" type="anioMaximo" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" use="required" />
+            <xs:attribute name="area" use="required" type="tipoRevista" />
+            <xs:attribute name="issn" type="patronIssn" use="required" />
+            <xs:attribute name="numero" type="numeroMinRevista" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- RESTRICCION TIPO REVISTA -->
+    <xs:simpleType name="tipoRevista">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="computacion" />
+            <xs:enumeration value="deportes" />
+            <xs:enumeration value="naturaleza" />
+            <xs:enumeration value="paranormal" />
+            <xs:enumeration value="comica" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION ISSN -->
+    <xs:simpleType name="patronIssn">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}-[0-9]{3}[A-Z]{1}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION NUMERO -->
+    <xs:simpleType name="numeroMinRevista">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- USUARIOS -->
+    <xs:element name="usuarios">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="usuario" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- USUARIO -->
+    <xs:element name="usuario">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="nombreUsuarioLongitud" />
+                <xs:element name="email" type="patronEmail" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" use="required" />
+            <xs:attribute name="tipo" use="required" type="tipoUsuario" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- RESTRICCION NOMBRE USUARIO -->
+    <xs:simpleType name="nombreUsuarioLongitud">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="4" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- RESTRICCION PATRON EMAIL -->
+    <xs:simpleType name="patronEmail">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- RESTRICCION TIPO USUARIO-->
+    <xs:simpleType name="tipoUsuario">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="alumno" />
+            <xs:enumeration value="profesor" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- PRESTAMOS -->
+    <xs:element name="prestamos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="prestamo" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- PRESTAMO -->
+    <xs:element name="prestamo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fecha_inicio" type="xs:date" />
+                <xs:element name="fecha_fin" minOccurs="0" type="xs:date" />
+                <xs:element name="estado" type="estadoPrestamo" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" use="required" />
+            <xs:attribute name="itemRef" type="xs:IDREF" use="required" />
+            <xs:attribute name="usuarioRef" type="xs:IDREF" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- RESTRICCION ESTADOS PRESTAMO -->
+    <xs:simpleType name="estadoPrestamo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="devuelto" />
+            <xs:enumeration value="en_curso" />
+            <xs:enumeration value="reservado" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
