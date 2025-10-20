@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE plataforma SYSTEM "plataforma.dtd">
+
+<plataforma fecha_publicacion="2025-10-20">
+    <cursos>
+        <curso id="C1" codigo="1001">
+            <titulo>Python basico</titulo>
+            <nivel>Basico</nivel>
+            <modalidad>Programacion</modalidad>
+            <horas>60</horas>
+            <modulos>
+                <modulo clave="1001-A">
+                    <nombre>Tipos de variables</nombre>
+                    <horas>20</horas>
+                </modulo>
+                <modulo clave="1001-B">
+                    <nombre>Tipos de bucles y condicionales</nombre>
+                    <horas>20</horas>
+                </modulo>
+                <modulo>
+                    <nombre>Funciones</nombre>
+                    <horas>20</horas>
+                </modulo>
+            </modulos>
+        </curso>
+        <curso id="C2">
+            <titulo>Python POO</titulo>
+            <nivel>Medio</nivel>
+            <modalidad>Porgramacion</modalidad>
+            <horas>50</horas>
+        </curso>
+    </cursos>
+    <alumnos>
+        <alumno id="A1" nif="78451221Q">
+            <nombre>Juan Valdes</nombre>
+            <email>juan@mail.com</email>
+        </alumno>
+        <alumno id="A2">
+            <nombre>Maria Garcia</nombre>
+            <email>maria@mail.com</email>
+            <telefono>654123987</telefono>
+        </alumno>
+    </alumnos>
+    <matriculas>
+        <matricula id="M1" alumnoRef="A1" cursoRef="C1">
+            <fecha_alta>2025-10-20</fecha_alta>
+            <estado>en_curso</estado>
+        </matricula>
+        <matricula id="M2" alumnoRef="A2" cursoRef="C2">
+            <fecha_alta>2024-09-15</fecha_alta>
+            <estado>finalizado</estado>
+        </matricula>
+    </matriculas>
+    <evaluaciones>
+        <evaluacion id="E1" matriculaRef="M2">
+            <instrumento>Examen</instrumento>
+            <convocatoria>2025-07-15</convocatoria>
+            <nota>7.89</nota>
+        </evaluacion>
+    </evaluaciones>
+</plataforma>

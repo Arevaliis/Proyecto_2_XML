@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <!DOCTYPE library SYSTEM "library.dtd"> -->
+
+<library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="library.xsd">
+    <book>
+        <title>El plan maestro</title>
+        <author>Javier Sierra</author>
+        <year>2025</year>
+        <publisher>Editorial Planeta</publisher>
+        <pages>504</pages>
+    </book>
+    <book>
+        <title>Alicia en el pais de las ideas</title>
+        <author>Sion Serra Lopes</author>
+        <year>2025</year>
+        <publisher>Editorial Ariel</publisher>
+        <pages>432</pages>
+    </book>
+    <book>
+        <title>El camino del padre</title>
+        <author>Eva Garcia Saenz de Urturi</author>
+        <year>2025</year>
+        <publisher>Editorial Planeta</publisher>
+        <pages>432</pages>
+    </book>
+</library>
