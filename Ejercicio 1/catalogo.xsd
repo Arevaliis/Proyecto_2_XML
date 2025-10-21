@@ -92,16 +92,17 @@
     <xs:element name="autor">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="nombre" type="autorNombreLongitud" />
+                <xs:element name="nombre" type="longitudPalabra" />
                 <xs:element name="orcid" type="orcidPatron" minOccurs="0" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <!-- RESTRICCION NOMBRE AUTOR -->
-    <xs:simpleType name="autorNombreLongitud">
+    <!-- RESTRICCION LONGITUD STRING -->
+    <xs:simpleType name="longitudPalabra">
         <xs:restriction base="xs:string">
-            <xs:minLength value="3" />
+            <xs:minLength value="3" /> <!-- Pongo al menos 3 para que no pueda haber campos del tipo
+            'longitudPalabra' vacios-->
         </xs:restriction>
     </xs:simpleType>
 
@@ -116,7 +117,7 @@
     <xs:element name="etiquetas">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="etiqueta" maxOccurs="unbounded" />
+                <xs:element name="etiqueta" maxOccurs="unbounded" type="longitudPalabra" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -138,7 +139,7 @@
                 <xs:element name="anio" type="anioMaximo" />
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID" use="required" />
-            <xs:attribute name="area" use="required" type="tipoRevista" />
+            <xs:attribute name="area" type="tipoRevista" use="required" />
             <xs:attribute name="issn" type="patronIssn" use="required" />
             <xs:attribute name="numero" type="numeroMinRevista" use="required" />
         </xs:complexType>
@@ -173,7 +174,7 @@
     <xs:element name="usuarios">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="usuario" maxOccurs="unbounded" />
+                <xs:element ref="usuario" maxOccurs="unbounded" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -201,7 +202,7 @@
     <!-- RESTRICCION PATRON EMAIL -->
     <xs:simpleType name="patronEmail">
         <xs:restriction base="xs:string">
-            <xs:pattern value="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" />
+            <xs:pattern value="[a-zA-Z0-9]{1}[a-zA-Z0-9.]{3,29}@[a-z]+\.[a-z]{2,4}" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -228,7 +229,7 @@
             <xs:sequence>
                 <xs:element name="fecha_inicio" type="xs:date" />
                 <xs:element name="fecha_fin" minOccurs="0" type="xs:date" />
-                <xs:element name="estado" type="estadoPrestamo" />
+                <xs:element name="estado" type="estadoPrestamo" default="disponible" />
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID" use="required" />
             <xs:attribute name="itemRef" type="xs:IDREF" use="required" />
@@ -242,6 +243,7 @@
             <xs:enumeration value="devuelto" />
             <xs:enumeration value="en_curso" />
             <xs:enumeration value="reservado" />
+            <xs:enumeration value="disponible"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>
