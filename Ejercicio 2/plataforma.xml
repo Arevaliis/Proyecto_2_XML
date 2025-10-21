@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE plataforma SYSTEM "plataforma.dtd">
+<!-- <!DOCTYPE plataforma SYSTEM "plataforma.dtd"> -->
 
-<plataforma fecha_publicacion="2025-10-20">
+<plataforma fecha_publicacion="2025-10-20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="plataforma.xsd">
     <cursos>
         <curso id="C1" codigo="1001">
             <titulo>Python basico</titulo>
@@ -56,7 +57,12 @@
         <evaluacion id="E1" matriculaRef="M2">
             <instrumento>Examen</instrumento>
             <convocatoria>2025-07-15</convocatoria>
-            <nota>7.89</nota>
+            <nota>7.56</nota>
+        </evaluacion>
+        <evaluacion id="E2" matriculaRef="M2">
+            <instrumento>Practica Gestor de Inventario</instrumento>
+            <convocatoria>2025-02-20</convocatoria>
+            <nota>10.0</nota>
         </evaluacion>
     </evaluaciones>
 </plataforma>

@@ -14,10 +14,7 @@
 <!ELEMENT horas (#PCDATA)>
 <!ELEMENT modulos (modulo+)>
 <!ELEMENT modulo (nombre, horas)>
-<!ATTLIST modulo
-clave CDATA #IMPLIED
-
->
+<!ATTLIST modulo clave CDATA #IMPLIED>
 <!ELEMENT nombre (#PCDATA)>
 
 <!-- ALUMNOS -->
