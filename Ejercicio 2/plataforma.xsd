@@ -180,7 +180,6 @@
     <!-- RESTRICCION FORMATO NOTA -->
     <xs:simpleType name="formatoNota">
         <xs:restriction base="xs:decimal">
-            <xs:totalDigits value="4"></xs:totalDigits>
             <xs:fractionDigits value="2"></xs:fractionDigits>
             <xs:minInclusive value="0.00"></xs:minInclusive>
             <xs:maxInclusive value="10.00"></xs:maxInclusive>
